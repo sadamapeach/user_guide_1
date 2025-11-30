@@ -789,11 +789,6 @@ def generate_multi_sheet_excel(selected_sheets, df_dict):
     output.seek(0)
     return output
 
-# --- FRAGMENT UNTUK BALLOONS ---
-@st.fragment
-def release_the_balloons():
-    st.balloons()
-
 # ---- DOWNLOAD BUTTON ----
 if selected_sheets:
     excel_bytes = generate_multi_sheet_excel(selected_sheets, dataframes)
@@ -803,7 +798,6 @@ if selected_sheets:
         data=excel_bytes,
         file_name="super botton.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        on_click=release_the_balloons,
         type="primary",
         use_container_width=True,
     )
