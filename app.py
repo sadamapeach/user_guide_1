@@ -1,7 +1,9 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import time
 import re
+from io import BytesIO
 
 def format_rupiah(x):
     if pd.isna(x):
@@ -330,16 +332,16 @@ data = [
     ["Vendor C", "Hardware", 20300, 21000, 21500, 22100, 84900],
     ["Vendor C", "TOTAL", 34500, 35900, 37100, 38200, 145700],
 ]
-df = pd.DataFrame(data, columns=columns)
+df_merge = pd.DataFrame(data, columns=columns)
 
 num_cols = ["Y0", "Y1", "Y2", "Y3", "TOTAL"]
-df_styled = (
-    df.style
+df_merge_styled = (
+    df_merge.style
     .format({col: format_rupiah for col in num_cols})
     .apply(highlight_total, axis=1)
 )
 
-st.dataframe(df_styled, hide_index=True)
+st.dataframe(df_merge_styled, hide_index=True)
 
 # with st.expander("See Data"):
 #     st.dataframe(df_styled, hide_index=True)
@@ -553,7 +555,7 @@ data = [
     ["Software", 61800, 58100, 60800, 58100, "Vendor B", 60800, "Vendor C", "4.7%", 60800, "+1.6%", "-4.4%", "+0.0%"],
     ["Hardware", 83600, 79800, 84900, 79800, "Vendor B", 83600, "Vendor A", "4.8%", 83600, "+0.0%", "-4.5%", "+1.6%"],
 ]
-df = pd.DataFrame(data, columns=columns)
+df_analysis = pd.DataFrame(data, columns=columns)
 
 def highlight_custom(row):
     # Style
@@ -577,13 +579,13 @@ def highlight_custom(row):
     return styled_row
 
 num_cols = ["Vendor A", "Vendor B", "Vendor C", "1st Lowest", "2nd Lowest", "Median Price"]
-df_styled = (
-    df.style
+df_analysis_styled = (
+    df_analysis.style
     .format({col: format_rupiah for col in num_cols})
     .apply(highlight_custom, axis=1)
 )
 
-st.dataframe(df_styled, hide_index=True)
+st.dataframe(df_analysis_styled, hide_index=True)
 
 st.write("")
 st.markdown("**:blue-badge[5. RANK VISUALIZATION]**")
@@ -591,8 +593,8 @@ st.markdown(
     """
         <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
             The system also displays a rangking visualization consisting of two tabs:
-            <span style="background:#C6EFCE; padding:1px 4px; border-radius:6px; font-weight:600; 
-            font-size: 13px; color: black">Original Price</span> and <span style="background:#FFEB9C; 
+            <span style="background: #FF5E5E; padding:1px 4px; border-radius:6px; font-weight:600; 
+            font-size: 13px; color: black">Original Price</span> and <span style="background: #FF00AA; 
             padding:2px 4px; border-radius:6px; font-weight:600; font-size: 13px; color: black">
             Converted Price</span>. Each tab contains a rank bar chart generated from the
             <span style="color: #FF69B4; font-weight: 500;">TCO Summary</span> and <span style=
@@ -606,8 +608,219 @@ st.markdown(
 tab1, tab2 = st.tabs(["Original Price", "Converted Price"])
 
 with tab1:
-    st.header("A cat")
-    st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
+    st.image("assets/1.png")
 with tab2:
-    st.header("A dog")
-    st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
+    st.markdown(
+        """
+            <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
+                This tab will generate the same chart as the <span style="background: #FF5E5E; padding:1px 4px; 
+                border-radius:6px; font-weight:600; font-size: 13px; color: black">Original Price</span> tab, 
+                but the values are based on the converted amounts. 
+                <br><br>
+                Please note that the chart will <span style="font-weight: bold; color: #FFE44D;">ONLY APPEAR</span> if you use 
+                the currency converter feature. If you do not use it, the tab will display a message, as shown below.
+            </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+    """
+    <div style='background-color:#ffe6f2; padding:8px 12px; border-radius:8px; margin-bottom:15px;'>
+        <p style='font-size:13px; color:#a8326d; margin:4px;'>
+            💡 No converted data found. Please use the <b>Currency Converter</b> first.
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.write("")
+st.markdown("**:violet-badge[6. COMPONENT COMPARISON]**")
+st.markdown(
+    """
+        <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
+            Similar to the rank visualization, this visualization also consists of two tabs: <span style="background: #FF5E5E; 
+            padding:1px 4px; border-radius:6px; font-weight:600; font-size: 13px; color: black">Original Price</span> and 
+            <span style="background: #FF00AA; padding:2px 4px; border-radius:6px; font-weight:600; font-size: 13px; color: black">
+            Converted Price</span>. With this visualization, users can more easily identify the price differences of each component 
+            across vendors.
+        </div>
+    """,
+    unsafe_allow_html=True
+)
+
+tab1, tab2 = st.tabs(["Original Price", "Converted Price"])
+
+with tab1:
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("assets/2.png")
+    with col2:
+        st.image("assets/3.png")
+with tab2:
+    st.markdown(
+        """
+            <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
+                This tab will generate the same chart as the <span style="background: #FF5E5E; padding:1px 4px; 
+                border-radius:6px; font-weight:600; font-size: 13px; color: black">Original Price</span> tab, 
+                but the values are based on the converted amounts. 
+                <br><br>
+                Please note that the chart will <span style="font-weight: bold; color: #FFE44D;">ONLY APPEAR</span> if you use 
+                the currency converter feature. If you do not use it, the tab will display a message, as shown below.
+            </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+    """
+    <div style='background-color:#ffe6f2; padding:8px 12px; border-radius:8px; margin-bottom:15px;'>
+        <p style='font-size:13px; color:#a8326d; margin:4px;'>
+            💡 No converted data found. Please use the <b>Currency Converter</b> first.
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+    
+st.write("")
+st.markdown("**:gray-badge[7. SUPER BUTTON]**")
+st.markdown(
+    """
+        <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
+            Lastly, there is a <span style="background:#FFCB09; padding:2px 4px; border-radius:6px; font-weight:600; 
+            font-size: 0.75rem; color: black">Super Button</span> feature where all dataframes generated by the system 
+            can be downloaded as a single file with multiple sheets. You can also customize the order of the sheets.
+            The interface looks more or less like this.
+        </div>
+    """,
+    unsafe_allow_html=True
+)
+
+dataframes = {
+    "Merge Data": df_merge,
+    "TCO Summary": df_tco,
+    "Bid & Price Analysis": df_analysis,
+}
+
+if "converted_tco_by_year" in st.session_state:
+    dataframes["TCO Converted"] = df_tco_converted
+
+# Tampilkan multiselect
+selected_sheets = st.multiselect(
+    "Select sheets to download in a single Excel file:",
+    options=list(dataframes.keys()),
+    default=list(dataframes.keys())  # default semua dipilih
+)
+
+# Fungsi "Super Button" & Formatting
+def generate_multi_sheet_excel(selected_sheets, df_dict):
+    """
+    Buat Excel multi-sheet dengan highlight:
+    - Sheet 'Bid & Price Analysis' -> highlight 1st & 2nd vendor
+    - Sheet lainnya -> highlight row TOTAL
+    """
+    output = BytesIO()
+
+    with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
+        for sheet in selected_sheets:
+            df = df_dict[sheet].copy()
+            df.to_excel(writer, index=False, sheet_name=sheet)
+            workbook  = writer.book
+            worksheet = writer.sheets[sheet]
+
+            # --- Format umum ---
+            fmt_rupiah = workbook.add_format({'num_format': '#,##0'})
+            fmt_pct    = workbook.add_format({'num_format': '#,##0.0"%"'})
+            fmt_total  = workbook.add_format({
+                "bold": True, "bg_color": "#D9EAD3", "font_color": "#1A5E20", "num_format": "#,##0"
+            })
+            fmt_first  = workbook.add_format({'bg_color': '#C6EFCE', "num_format": "#,##0"})
+            fmt_second = workbook.add_format({'bg_color': '#FFEB9C', "num_format": "#,##0"})
+
+            # Identifikasi numeric columns
+            numeric_cols = df.select_dtypes(include=["number"]).columns.tolist()
+            vendor_cols = [c for c in numeric_cols] if sheet == "Bid & Price Analysis" else []
+
+            # Apply format kolom numeric / persen
+            for col_idx, col_name in enumerate(df.columns):
+                if col_name in numeric_cols:
+                    worksheet.set_column(col_idx, col_idx, 15, fmt_rupiah)
+                if "%" in col_name:
+                    worksheet.set_column(col_idx, col_idx, 15, fmt_pct)
+
+            # --- Highlight baris ---
+            for row_idx, row in enumerate(df.itertuples(index=False), start=1):
+                # Cek apakah TOTAL
+                is_total_row = any(str(x).strip().upper() == "TOTAL" for x in row if pd.notna(x))
+
+                # Ambil nama 1st & 2nd vendor untuk sheet Bid & Price Analysis
+                if sheet == "Bid & Price Analysis":
+                    first_vendor_name = row[df.columns.get_loc("1st Vendor")]
+                    second_vendor_name = row[df.columns.get_loc("2nd Vendor")]
+
+                    # Cari index kolom vendor di vendor_cols
+                    first_idx = df.columns.get_loc(first_vendor_name) if first_vendor_name in vendor_cols else None
+                    second_idx = df.columns.get_loc(second_vendor_name) if second_vendor_name in vendor_cols else None
+
+                # Loop tiap kolom
+                for col_idx, col_name in enumerate(df.columns):
+                    value = row[col_idx]
+                    fmt = None
+
+                    # Highlight TOTAL untuk sheet selain Bid & Price Analysis
+                    if is_total_row and sheet in ["Merge Data", "TCO Summary", "TCO Converted"]:
+                        fmt = fmt_total
+
+                    # Highlight 1st/2nd vendor
+                    elif sheet == "Bid & Price Analysis":
+                        if first_idx is not None and col_idx == first_idx:
+                            fmt = fmt_first
+                        elif second_idx is not None and col_idx == second_idx:
+                            fmt = fmt_second
+
+                    # Tangani NaN / None / inf
+                    if pd.isna(value) or (isinstance(value, (int, float)) and np.isinf(value)):
+                        value = ""
+
+                    worksheet.write(row_idx, col_idx, value, fmt)
+
+    output.seek(0)
+    return output
+
+# --- FRAGMENT UNTUK BALLOONS ---
+@st.fragment
+def release_the_balloons():
+    st.balloons()
+
+# ---- DOWNLOAD BUTTON ----
+if selected_sheets:
+    excel_bytes = generate_multi_sheet_excel(selected_sheets, dataframes)
+
+    st.download_button(
+        label="Download",
+        data=excel_bytes,
+        file_name="super botton.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        on_click=release_the_balloons,
+        type="primary",
+        use_container_width=True,
+    )
+
+st.write("")
+st.divider()
+
+st.markdown("#### Video Tutorial")
+st.markdown(
+    """
+        <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
+            I have also included a video tutorial, which you can access through the 
+            <span style="background:#FF0000; padding:2px 4px; border-radius:6px; font-weight:600; 
+            font-size: 0.75rem; color: black">YouTube</span> link below.
+        </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.video("https://youtu.be/Oxf8ULSB8yU?si=_GEcYMMDf-xLh-yW")
