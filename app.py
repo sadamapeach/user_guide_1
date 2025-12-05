@@ -249,7 +249,7 @@ st.markdown(
     """
         <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
             You are not allowed to add a 
-            <span style="font-weight: 700;">TOTAL</span> row at the end of the table! 
+            <span style="font-weight: 700;">TOTAL</span> row at the bottom of the table! 
             Please refer to the example table below:
         </div>
     """,
