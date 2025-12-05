@@ -270,7 +270,6 @@ def red_highlight(row):
         return ["color: #FF4D4D;" for _ in row]
     return [""] * len(row)
 
-num_cols = ["Y0", "Y1", "Y2", "Y3", "TOTAL 3Y TCO"]
 df_styled = df.style.apply(red_highlight, axis=1)
 
 st.dataframe(df_styled, hide_index=True)
