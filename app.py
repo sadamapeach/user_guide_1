@@ -339,9 +339,9 @@ st.markdown("**:red-badge[1. MERGE DATA]**")
 st.markdown(
     """
         <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
-            The system will merge the tables from each sheet into a single table and add
-            a <span style="background:#FFCB09; padding:2px 4px; border-radius:6px; font-weight:600; 
-            font-size: 0.75rem; color: black">TOTAL ROW</span> for each vendor, as shown below.
+            The system will merge the tables from each sheet into a single table and add a 
+            <span style="background:#FFCB09; padding:2px 4px; border-radius:6px; font-weight:600; font-size: 0.75rem; color: black">TOTAL ROW</span> 
+            for each vendor, as shown below.
         </div>
     """,
     unsafe_allow_html=True
@@ -370,9 +370,6 @@ df_merge_styled = (
 )
 
 st.dataframe(df_merge_styled, hide_index=True)
-
-# with st.expander("See Data"):
-#     st.dataframe(df_styled, hide_index=True)
 
 st.write("")
 st.markdown("**:orange-badge[2. TCO SUMMARY]**")
@@ -621,13 +618,11 @@ st.markdown(
     """
         <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
             The system also displays a rangking visualization consisting of two tabs:
-            <span style="background: #FF5E5E; padding:1px 4px; border-radius:6px; font-weight:600; 
-            font-size: 13px; color: black">Original Price</span> and <span style="background: #FF00AA; 
-            padding:2px 4px; border-radius:6px; font-weight:600; font-size: 13px; color: black">
-            Converted Price</span>. Each tab contains a rank bar chart generated from the
-            <span style="color: #FF69B4; font-weight: 500;">TCO Summary</span> and <span style=
-            "color: #FF69B4; font-weight: 500;">
-            Currency Converter</span> table.
+            <span style="background: #FF5E5E; padding:1px 4px; border-radius:6px; font-weight:600; font-size: 13px; color: black">Original Price</span> and 
+            <span style="background: #FF00AA; padding:2px 4px; border-radius:6px; font-weight:600; font-size: 13px; color: black">Converted Price</span>. 
+            Each tab contains a rank bar chart generated from the
+            <span style="color: #FF69B4; font-weight: 500;">TCO Summary</span> and 
+            <span style="color: #FF69B4; font-weight: 500;">Currency Converter</span> table.
         </div>
     """,
     unsafe_allow_html=True
@@ -641,12 +636,13 @@ with tab2:
     st.markdown(
         """
             <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
-                This tab will generate the same chart as the <span style="background: #FF5E5E; padding:1px 4px; 
-                border-radius:6px; font-weight:600; font-size: 13px; color: black">Original Price</span> tab, 
+                This tab will generate the same chart as the 
+                <span style="background: #FF5E5E; padding:1px 4px; border-radius:6px; font-weight:600; font-size: 13px; color: black">Original Price</span> tab, 
                 but the values are based on the converted amounts. 
                 <br><br>
-                Please note that the chart will <span style="font-weight: bold; color: #FFE44D;">ONLY APPEAR</span> if you use 
-                the currency converter feature. If you do not use it, the tab will display a message, as shown below.
+                Please note that the chart will 
+                <span style="font-weight: bold; color: #FFE44D;">ONLY APPEAR</span> 
+                if you use the currency converter feature. If you do not use it, the tab will display a message, as shown below.
             </div>
         """,
         unsafe_allow_html=True
@@ -668,11 +664,10 @@ st.markdown("**:violet-badge[6. COMPONENT COMPARISON]**")
 st.markdown(
     """
         <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
-            Similar to the rank visualization, this visualization also consists of two tabs: <span style="background: #FF5E5E; 
-            padding:1px 4px; border-radius:6px; font-weight:600; font-size: 13px; color: black">Original Price</span> and 
-            <span style="background: #FF00AA; padding:2px 4px; border-radius:6px; font-weight:600; font-size: 13px; color: black">
-            Converted Price</span>. With this visualization, users can more easily identify the price differences of each component 
-            across vendors.
+            Similar to the rank visualization, this visualization also consists of two tabs: 
+            <span style="background: #FF5E5E; padding:1px 4px; border-radius:6px; font-weight:600; font-size: 13px; color: black">Original Price</span> and 
+            <span style="background: #FF00AA; padding:2px 4px; border-radius:6px; font-weight:600; font-size: 13px; color: black">Converted Price</span>. 
+            With this visualization, users can more easily identify the price differences of each component across vendors.
         </div>
     """,
     unsafe_allow_html=True
@@ -690,12 +685,13 @@ with tab2:
     st.markdown(
         """
             <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
-                This tab will generate the same chart as the <span style="background: #FF5E5E; padding:1px 4px; 
-                border-radius:6px; font-weight:600; font-size: 13px; color: black">Original Price</span> tab, 
+                This tab will generate the same chart as the 
+                <span style="background: #FF5E5E; padding:1px 4px; border-radius:6px; font-weight:600; font-size: 13px; color: black">Original Price</span> tab, 
                 but the values are based on the converted amounts. 
                 <br><br>
-                Please note that the chart will <span style="font-weight: bold; color: #FFE44D;">ONLY APPEAR</span> if you use 
-                the currency converter feature. If you do not use it, the tab will display a message, as shown below.
+                Please note that the chart will 
+                <span style="font-weight: bold; color: #FFE44D;">ONLY APPEAR</span> if you use the currency converter feature. 
+                If you do not use it, the tab will display a message, as shown below.
             </div>
         """,
         unsafe_allow_html=True
@@ -717,9 +713,10 @@ st.markdown("**:gray-badge[7. SUPER BUTTON]**")
 st.markdown(
     """
         <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
-            Lastly, there is a <span style="background:#FFCB09; padding:2px 4px; border-radius:6px; font-weight:600; 
-            font-size: 0.75rem; color: black">Super Button</span> feature where all dataframes generated by the system 
-            can be downloaded as a single file with multiple sheets. You can also customize the order of the sheets.
+            Lastly, there is a 
+            <span style="background:#FFCB09; padding:2px 4px; border-radius:6px; font-weight:600; font-size: 0.75rem; color: black">Super Button</span> 
+            feature where all dataframes generated by the system can be downloaded as a single file with multiple sheets. 
+            You can also customize the order of the sheets.
             The interface looks more or less like this.
         </div>
     """,
@@ -838,8 +835,8 @@ st.markdown(
     """
         <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
             I have also included a video tutorial, which you can access through the 
-            <span style="background:#FF0000; padding:2px 4px; border-radius:6px; font-weight:600; 
-            font-size: 0.75rem; color: black">YouTube</span> link below.
+            <span style="background:#FF0000; padding:2px 4px; border-radius:6px; font-weight:600; font-size: 0.75rem; color: black">YouTube</span> 
+            link below.
         </div>
     """,
     unsafe_allow_html=True
