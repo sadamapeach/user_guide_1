@@ -280,9 +280,8 @@ st.markdown(
         <div style="text-align: justify; font-size: 15px; margin-bottom: 20px; margin-top: -5px;">
             The table above is an 
             <span style="color: #FF69B4; font-weight: 700;">incorrect example</span> and is 
-            <span style="color: #FF69B4; font-weight: 700;">not permitted</span>! The 
-            <span style="background:#FFCB09; padding:2px 4px; border-radius:6px; font-weight:600; font-size: 0.75rem; color: black">TOTAL ROW</span>
-            is generated automatically during
+            <span style="color: #FF69B4; font-weight: 700;">not permitted</span>! 
+            The total row is generated automatically during
             <span style="font-weight: 700;">MERGE DATA</span> — 
             do not add one manually, or it will be treated as part of the scope and included in calculations.
         </div>
