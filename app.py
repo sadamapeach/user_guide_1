@@ -69,12 +69,11 @@ st.markdown("#### Input Structure")
 st.markdown(
     """
         <div style="text-align: justify; font-size: 15px; margin-bottom: 20px">
-            The input file required for this menu should be a <span style="color: #FF69B4; font-weight: 500;">
-            single file containing multiple sheets</span>, in eather <span style="background:#C6EFCE; 
-            padding:1px 4px; border-radius:6px; font-weight:600; font-size: 0.75rem; color: black">.xlsx</span> 
-            or <span style="background:#FFEB9C; padding:2px 4px; border-radius:6px; font-weight:600; 
-            font-size: 0.75rem; color: black">.xls</span> format. Each sheet represents a vendor name, with the 
-            table structure in each sheet as follows:
+            The input file required for this menu should be a 
+            <span style="color: #FF69B4; font-weight: 500;">single file containing multiple sheets</span>, in eather 
+            <span style="background:#C6EFCE; padding:1px 4px; border-radius:6px; font-weight:600; font-size: 0.75rem; color: black">.xlsx</span> or 
+            <span style="background:#FFEB9C; padding:2px 4px; border-radius:6px; font-weight:600; font-size: 0.75rem; color: black">.xls</span> format. 
+            Each sheet represents a vendor name, with the table structure in each sheet as follows:
         </div>
     """,
     unsafe_allow_html=True
@@ -121,13 +120,11 @@ st.markdown(
 st.markdown(
     """
         <div style="text-align: justify; font-size: 15px; margin-bottom: 20px">
-            The system accommodates a <span style="font-weight: bold;">dynamic table</span>,
-            allowing users to enter any number of non-numeric and numeric columns. The 
-            <span style="background:#FFCB09; padding:2px 4px; border-radius:6px; font-weight:600; 
-            font-size: 0.75rem; color: black">TOTAL 5Y</span> column is optional and can be
-            included or omitted. Users have the freedom to name the columns as they wish. The 
-            system logic relies on <span style="font-weight: bold;">column indices</span>,
-            not specific column names.
+            The system accommodates a 
+            <span style="font-weight: bold;">dynamic table</span>, allowing users to enter any number of non-numeric and numeric columns. The 
+            <span style="background:#FFCB09; padding:2px 4px; border-radius:6px; font-weight:600; font-size: 0.75rem; color: black">TOTAL 5Y</span> 
+            column is optional and can be included or omitted. Users have the freedom to name the columns as they wish. The system logic relies on 
+            <span style="font-weight: bold;">column indices</span>, not specific column names.
         </div>
     """,
     unsafe_allow_html=True
@@ -170,7 +167,7 @@ st.markdown(
 
 st.markdown(
     """
-        <div style="text-align: justify; font-size: 15px; margin-bottom: 20px">
+        <div style="text-align: justify; font-size: 15px; margin-bottom: 25px">
             this order is <span style="color: #FF69B4; font-weight: 700;">strict</span> and 
             <span style="color: #FF69B4; font-weight: 700;">cannot be altered</span>!
         </div>
@@ -201,12 +198,13 @@ st.dataframe(df, hide_index=True)
 
 st.markdown(
     """
-        <div style="text-align: justify; font-size: 15px; margin-bottom: 20px; margin-top: -5px;">
-            The table above is an <span style="color: #FF69B4; font-weight: 700;">incorrect example</span>
-            and is <span style="color: #FF69B4; font-weight: 700;">not allowed</span> because it contains 
-            a <span style="font-weight: bold;">"No"</span> column. The "No" column is prohibited in this
-            menu, as it will be treated as a numeric column by the system, which violates the constraint
-            described in point 1.
+        <div style="text-align: justify; font-size: 15px; margin-bottom: 25px; margin-top: -5px;">
+            The table above is an 
+            <span style="color: #FF69B4; font-weight: 700;">incorrect example</span> and is 
+            <span style="color: #FF69B4; font-weight: 700;">not allowed</span> because it contains a 
+            <span style="font-weight: bold;">"No"</span> column. 
+            The "No" column is prohibited in this menu, as it will be treated as a numeric column by the system, 
+            which violates the constraint described in point 1.
         </div>
     """,
     unsafe_allow_html=True
@@ -216,47 +214,77 @@ st.markdown("**:green-badge[3. FLOATING TABLE]**")
 st.markdown(
     """
         <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
-            Floating tables are allowed, meaning tables <span style="color: #FF69B4; font-weight: 700;">
-            do not need to start from cell A1</span>. However, ensure
-            that the cells above and to the left of the table are empty, as shown in the example below:
+            Floating tables are allowed, meaning tables 
+            <span style="color: #FF69B4; font-weight: 700;">do not need to start from cell A1</span>. 
+            However, ensure that the cells above and to the left of the table are empty, as shown in the example below:
         </div>
     """,
     unsafe_allow_html=True
 )
 
 # DataFrame
-columns = ["", "A", "B", "C", "D", "E", "F", "G"]
-data = [
-    [1] + [""] * (len(columns) - 1),
-    [2] + [""] * (len(columns) - 1),
-    [3] + [""] * (len(columns) - 1),
-    [4] + [""] * (len(columns) - 1),
-    [5] + [""] * (len(columns) - 1),
-]
-df = pd.DataFrame(data, columns=columns)
+columns = ["", "A", "B", "C", "D", "E", "F", "G", "H"]
+df = pd.DataFrame([[i] + [""] * 8 for i in range(1, 6)], columns=columns)
 
-df.at[1, "B"] = "Scope"
-df.at[1, "C"] = "Y0"
-df.at[1, "D"] = "Y1"
-df.at[1, "E"] = "Y2"
-df.at[1, "F"] = "TOTAL 3Y TCO"
-df.at[2, "B"] = "Software"
-df.at[2, "C"] = "1.000"
-df.at[2, "D"] = "2.000"
-df.at[2, "E"] = "3.000"
-df.at[2, "F"] = "6.000"
-df.at[3, "B"] = "Hardware"
-df.at[3, "C"] = "1.500"
-df.at[3, "D"] = "2.500"
-df.at[3, "E"] = "3.500"
-df.at[3, "F"] = "7.500"
+# Header row
+df.loc[1, ["B", "C", "D", "E", "F", "G"]] = ["Scope", "Y0", "Y1", "Y2", "Y3", "TOTAL 3Y TCO"]
+
+# Data rows
+df.loc[2, ["B", "C", "D", "E", "F", "G"]] = ["Software", "1.000", "2.000", "3.000", "4.000", "10.000"]
+df.loc[3, ["B", "C", "D", "E", "F", "G"]] = ["Hardware", "1.500", "2.500", "3.500", "4.500", "12.000"]
 
 st.dataframe(df, hide_index=True)
 
 st.markdown(
     """
-        <div style="text-align: justify; font-size: 15px; margin-bottom: 20px; margin-top:-10px;">
+        <div style="text-align: justify; font-size: 15px; margin-bottom: 25px; margin-top:-10px;">
             To provide additional explanations or notes on the sheet, you can include them using an image or a text box.
+        </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown("**:blue-badge[4. TOTAL ROW]**")
+st.markdown(
+    """
+        <div style="text-align: justify; font-size: 15px; margin-bottom: 10px; margin-top:-10px;">
+            You are not allowed to add a 
+            <span style="font-weight: 700;">TOTAL</span> row at the end of the table! 
+            Please refer to the example table below:
+        </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# DataFrame
+columns = ["Scope", "Y0", "Y1", "Y2", "Y3", "TOTAL 3Y TCO"]
+data = [
+    ["Software", "1.000", "2.000", "3.000", "4.000", "10.000"],
+    ["Hardware", "1.500", "2.500", "3.500", "4.500", "12.000"],
+    ["TOTAL", "2.500", "4.500", "6.500", "8.500", "22.000"],
+]
+df = pd.DataFrame(data, columns=columns)
+
+def red_highlight(row):
+    if row["Scope"] == "TOTAL":
+        return ["color: #FF4D4D;" for _ in row]
+    return [""] * len(row)
+
+num_cols = ["Y0", "Y1", "Y2", "Y3", "TOTAL 3Y TCO"]
+df_styled = df.style.apply(red_highlight, axis=1)
+
+st.dataframe(df_styled, hide_index=True)
+
+st.markdown(
+    """
+        <div style="text-align: justify; font-size: 15px; margin-bottom: 20px; margin-top: -5px;">
+            The table above is an 
+            <span style="color: #FF69B4; font-weight: 700;">incorrect example</span> and is 
+            <span style="color: #FF69B4; font-weight: 700;">not permitted</span>! The 
+            <span style="background:#FFCB09; padding:2px 4px; border-radius:6px; font-weight:600; font-size: 0.75rem; color: black">TOTAL ROW</span>
+            is generated automatically during
+            <span style="font-weight: 700;">MERGE DATA</span> — 
+            do not add one manually, or it will be treated as part of the scope and included in calculations.
         </div>
     """,
     unsafe_allow_html=True
