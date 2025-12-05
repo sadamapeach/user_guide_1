@@ -318,7 +318,7 @@ def release_the_balloons():
 st.download_button(
     label="Dummy Dataset",
     data=file_data,
-    file_name="dummy dataset.xlsx",
+    file_name="Dummy Dataset - TCO Comparison by Year.xlsx",
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     on_click=release_the_balloons,
     type="primary",
@@ -820,7 +820,7 @@ if selected_sheets:
     st.download_button(
         label="Download",
         data=excel_bytes,
-        file_name="super botton.xlsx",
+        file_name="Super Botton - TCO Comparison by Year.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         type="primary",
         use_container_width=True,
