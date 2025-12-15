@@ -77,7 +77,15 @@ def highlight_1st_2nd(row, columns):
             styles[i] = "background-color: #FFEB9C; color: #9C6500;"
     return styles
 
-st.subheader("🧑‍🏫 User Guide: TCO Comparison by Year")
+st.markdown(
+    """
+    <div style="font-size:1.75rem; font-weight:700; margin-bottom:9px">
+        🧑‍🏫 User Guide: TCO Comparison by Year
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 st.markdown(
     ":red-badge[Indosat] :orange-badge[Ooredoo] :green-badge[Hutchison]"
 )
